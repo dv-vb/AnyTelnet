@@ -16,8 +16,11 @@ class HomeView extends State<HomeScreen> {
 
   final Con _con = Con.con;
   TextEditingController _deviceController = new TextEditingController();
+  TextEditingController _portController = new TextEditingController();
+  /*
   TextEditingController _unameController = new TextEditingController();
   TextEditingController _pwdController = new TextEditingController();
+  */
   @protected
   @override
   void initState() {
@@ -28,9 +31,6 @@ class HomeView extends State<HomeScreen> {
     print("super init");
     _con.init();
   }
-  String _ip;
-  String _username;
-  String _password;
   bool _select_without_username_password = false;
 
   @protected
@@ -50,8 +50,17 @@ class HomeView extends State<HomeScreen> {
               controller: _deviceController,
               autofocus: true,
               decoration: InputDecoration(labelText: "IP-address",
-                hintText: "Input you device's IP-address",
+                hintText: "Input your device's IP-address",
                 prefixIcon: Icon(Icons.device_hub),
+              ),
+              keyboardType: TextInputType.number,
+            ),
+            TextField(
+              controller: _portController,
+              autofocus: true,
+                decoration: InputDecoration(labelText: "Port",
+                hintText: "Input Port",
+                prefixIcon: Icon(Icons.extension)
               ),
               keyboardType: TextInputType.number,
             ),
@@ -105,7 +114,7 @@ class HomeView extends State<HomeScreen> {
                           .primaryColor,
                       textColor: Colors.white,
                       onPressed: () {
-                        _con.login(_deviceController.text, _unameController.text, _pwdController.text);
+                        _con.login(_deviceController.text, int.parse(_portController.text));
                         Navigator.pushNamed(context, ArchSampleRoutes.goTelnet);
                       },
                     ),

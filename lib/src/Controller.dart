@@ -34,10 +34,10 @@ class Con extends ControllerMVC {
     await model.send(cmd, func);
   }
   /* here should have an login method */
-  void login(String device_ip, String usr, String password)
+  void login(String device_ip, int port)
   {
     print("login...");
-    model.connect(device_ip, usr, password);
+    model.connect(device_ip, port);
     refresh();
   }
   static List<int> get con_reply => model.reply;

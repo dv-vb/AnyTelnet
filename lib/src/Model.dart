@@ -35,12 +35,11 @@ class Model {
     //return await socket.transform(utf8.decoder).join();
   }
 
-  void connect(String device_ip, String user, String pwd) async
+  void connect(String device_ip, int port) async
   {
     print(device_ip);
-    print(user);
-    print(pwd);
-    socket = await Socket.connect(device_ip, 23);
+    print(port);
+    socket = await Socket.connect(device_ip, port);
     print(socket.runtimeType);
     print(socket.toString());
     //socket.listen(sock_recieve);
@@ -91,11 +90,38 @@ class Model {
       sock_negotiate(value);
     } else {
       value.forEach(add_to_repsone);
-      print(utf8.decode(value));
-      /* add to table view  */
-      if (get_send_reply != null) {
-        get_send_reply(utf8.decode(respone));
+      /* TODO: Don't Support GBK */
+      var reply_string;
+      try {
+        reply_string = utf8.decode(value);
+        print(reply_string);
+        if (get_send_reply != null) {
+          get_send_reply(utf8.decode(respone));
+        }
+      } catch (e) {
+        print("no utf8");
+        try {
+          reply_string = ascii.decode(value);
+          print(reply_string);
+          if (get_send_reply != null) {
+            get_send_reply(ascii.decode(respone));
+          }
+        } catch (e) {
+          print("no ascii");
+          try {
+            reply_string = latin1.decode(value);
+            print(reply_string);
+            if (get_send_reply != null) {
+              get_send_reply(latin1.decode(respone));
+            }
+          } catch (e) {
+            print("no latin1");
+          }
+        }
       }
+      //print(utf8.decode(value));
+      /* add to table view  */
+
     }
     print("end");
   }
