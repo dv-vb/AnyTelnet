@@ -3,5 +3,5 @@ Network engineer can use anytelnet tool on your iphone, your ipad or other andro
 
 # some ScreenShot
 
-![login](images/login.gif)
-![operating](images/telneting.gif)
+![login](https://github.com/dv-vb/AnyTelnet/blob/master/images/login.gif)
+![operating](https://github.com/dv-vb/AnyTelnet/blob/master/images/telneting.gif)
