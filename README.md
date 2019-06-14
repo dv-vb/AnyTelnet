@@ -1,5 +1,6 @@
 # AnyTelnet
-Network engineer can use anytelnet tool on your iphone, your ipad or other android system device to connect switch, router when then are on the lab. 
+Network engineer can use anytelnet tool on your iphone/your iPad or other android system devices to connect Switch/Router,
+ such as Cisco/Huawei/H3C/Ruijie, when they are on the lab without PC or other ternimal tools. 
 
 # some ScreenShot
 
