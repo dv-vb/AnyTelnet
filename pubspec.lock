@@ -46,6 +46,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  gbk2utf8:
+    dependency: "direct main"
+    description:
+      name: gbk2utf8
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.0.1"
   matcher:
     dependency: transitive
     description:

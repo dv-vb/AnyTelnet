@@ -3,6 +3,7 @@ import 'dart:async';
 import 'dart:async' show Future;
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:gbk2utf8/gbk2utf8.dart';
 
 typedef void EventCallback(String str);
 
@@ -109,6 +110,28 @@ class Model {
         } catch (e) {
           print("no ascii");
           try {
+            reply_string = gbk.decode(value);
+            print(reply_string);
+            if (get_send_reply != null) {
+              get_send_reply(gbk.decode(respone));
+            }
+          } catch (e) {
+            print("no gbk");
+            try {
+              reply_string = latin1.decode(value);
+              print(reply_string);
+              if (get_send_reply != null) {
+                get_send_reply(latin1.decode(respone));
+              }
+            } catch (e) {
+              print("no latin1");
+            }
+          }
+        }
+      }
+      //print(utf8.decode(value));
+      /* add to table view
+      * try {
             reply_string = latin1.decode(value);
             print(reply_string);
             if (get_send_reply != null) {
@@ -117,10 +140,7 @@ class Model {
           } catch (e) {
             print("no latin1");
           }
-        }
-      }
-      //print(utf8.decode(value));
-      /* add to table view  */
+      * */
 
     }
     print("end");
